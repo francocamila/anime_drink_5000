@@ -19,17 +19,17 @@ $ Digite o seu nome: Eu
 $ Ola Eu
 ```
 
-#include <stdio.h>
+``` #include <stdio.h>
 
-int main(int argc, char **argv)
-{
-char nome[60];
-printf("Digite o seu nome:");
-scanf("%s", nome);
-printf ("\n Olá %s \n", nome);
-}
+ int main(int argc, char **argv)
+ {
+ char nome[60];
+ printf("Digite o seu nome:");
+ scanf("%s", nome);
+ printf ("\n Olá %s \n", nome);
+ }
 
-
+```
 
 3. Apresente os comportamentos do código anterior nos seguintes casos:
 
@@ -39,79 +39,80 @@ $ ./ola_usuario_1
 $ Digite o seu nome: Eu Mesmo
 ```
 
-biloca@biloca-X450LA:~/Desktop/Embarcados/Questoes/03_GCC/2$ ./olahumano
+```biloca@biloca-X450LA:~/Desktop/Embarcados/Questoes/03_GCC/2$ ./olahumano
 Digite o seu nome:Eu Mesmo
 
  Olá Eu 
-
+```
 (b) Se o usuário insere mais de um nome entre aspas duplas. Por exemplo:
 ```bash
 $ ./ola_usuario_1
 $ Digite o seu nome: "Eu Mesmo"
 ```
-
-biloca@biloca-X450LA:~/Desktop/Embarcados/Questoes/03_GCC/2$ ./olahumano
-Digite o seu nome:"Eu Mesmo"
+```
+ biloca@biloca-X450LA:~/Desktop/Embarcados/Questoes/03_GCC/2$ ./olahumano
+ Digite o seu nome:"Eu Mesmo"
 
  Olá "Eu 
-
+```
 (c) Se é usado um pipe. Por exemplo:
 ```bash
 $ echo Eu | ./ola_usuario_1
 ```
-
-biloca@biloca-X450LA:~/Desktop/Embarcados/Questoes/03_GCC/2$ echo Eu | ./olahumano
-Digite o seu nome:
+```
+ biloca@biloca-X450LA:~/Desktop/Embarcados/Questoes/03_GCC/2$ echo Eu | ./  olahumano
+ Digite o seu nome:
  Olá Eu 
-
+```
 (d) Se é usado um pipe com mais de um nome. Por exemplo:
 ```bash
 $ echo Eu Mesmo | ./ola_usuario_1
 ```
-
-biloca@biloca-X450LA:~/Desktop/Embarcados/Questoes/03_GCC/2$ echo Eu Mesmo | ./olahumano
-Digite o seu nome:
+```
+ biloca@biloca-X450LA:~/Desktop/Embarcados/Questoes/03_GCC/2$ echo Eu Mesmo | ./olahumano
+ Digite o seu nome:
  Olá Eu
-
+```
  
 (e) Se é usado um pipe com mais de um nome entre aspas duplas. Por exemplo:
 ```bash
 $ echo "Eu Mesmo" | ./ola_usuario_1
 ```
-
-biloca@biloca-X450LA:~/Desktop/Embarcados/Questoes/03_GCC/2$ echo "Eu Mesmo" | ./olahumano
-Digite o seu nome:
+```
+ biloca@biloca-X450LA:~/Desktop/Embarcados/Questoes/03_GCC/2$ echo "Eu Mesmo" | ./olahumano
+ Digite o seu nome:
  Olá Eu
-
+```
 (f) Se é usado o redirecionamento de arquivo. Por exemplo:
 ```bash
 $ echo Ola mundo cruel! > ola.txt
 $ ./ola_usuario_1 < ola.txt
 ```
-
-biloca@biloca-X450LA:~/Desktop/Embarcados/Questoes/03_GCC/2$ ./olahumano < ola.txt
-Digite o seu nome:
+```
+ biloca@biloca-X450LA:~/Desktop/Embarcados/Questoes/03_GCC/2$ ./olahumano < ola.txt
+ Digite o seu nome:
  Olá Ola
-
+```
 4. Crie um código em C que recebe o nome do usuário como um argumento de entrada (usando as variáveis argc e *argv[]), e imprime no terminal "Ola " e o nome do usuário. Por exemplo, considerando que o código criado recebeu o nome de 'ola_usuario_2':
 
 ```bash
 $ ./ola_usuario_2 Eu
 $ Ola Eu
 ```
+```
+ #include <stdio.h>
+ #include <stdlib.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc, char *argv[])
-{ int i;
-printf("\nOla");
-for (i =1; i<argc; i++)
-{
-printf(" %s\n", argv[i]);
-}
-}
-
+ int main(int argc, char *argv[])
+ { 
+    int i;
+    printf("\nOla");
+    for (i =1; i<argc; i++)
+ {
+    printf(" %s\n", argv[i]);
+ }
+ }
+```
 5. Apresente os comportamentos do código anterior nos seguintes casos:
 
 (a) Se o usuário insere mais de um nome.
