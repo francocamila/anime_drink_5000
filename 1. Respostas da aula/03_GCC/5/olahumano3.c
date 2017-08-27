@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{ int i;
+printf("\nOla");
+for (i =1; i<argc; i++)
+{
+printf(" %s", argv[i]);
+}
+printf("\n Numero de entradas: %d\n", i);
+}

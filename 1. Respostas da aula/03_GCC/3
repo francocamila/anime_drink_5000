@@ -1,0 +1,28 @@
+3. Apresente os comportamentos do código anterior nos seguintes casos:
+
+a) Se o usuário insere mais de um nome.
+
+Se o usuário insere "Eu mesmo", aparece "Olá Eu"
+
+b) Se o usuário insere mais de um nome entre aspas duplas.
+
+Olá "Eu
+
+c) Se é usado um pipe.
+
+Irá aparecer:
+"Digite o seu nome:
+Olá Eu"
+
+d) Se é usado um pipe com mais de um nome. 
+
+O mesmo do anterior.
+
+e) Se é usado um pipe com mais de um nome entre aspas duplas.
+
+O mesmo do anterior.
+
+f) Se é usado o redirecionamento de arquivo.
+
+"Digite o seu nome:
+Olá Ola"
