@@ -119,15 +119,23 @@ fclose(fp);
 
 ```
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "bib_arqs.h"
 
-int tam_arq_texto(char *nome_arquivo)
+long tam_arq_texto(char *nome_arquivo)
 {
-FILE *fp;
-int tamanho;
-fseek(fp, 0,SEEK_END);
-
+FILE *fp = fopen(nome_arquivo, "r");
+long tamanho=0;
+if (fp != NULL){
+fseek(fp, 0, SEEK_END);
 tamanho = ftell(fp);
+fseek(fp, 0, SEEK_SET);
+fclose(fp);
+}
+else{
+printf("Arquivo inexistente");
+}
 return tamanho;
 }
 ```
@@ -137,27 +145,41 @@ return tamanho;
 ```
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "bib_arqs.h"
 
-int tam_arq_texto(char *nome_arquivo)
+long tam_arq_texto(char *nome_arquivo)
 {
-FILE *fp;
-int tamanho=0;
-fseek(fp, 0,SEEK_END);
+FILE *fp = fopen(nome_arquivo, "r");
+long tamanho=0;
+if (fp != NULL){
+fseek(fp, 0, SEEK_END);
 tamanho = ftell(fp);
+fseek(fp, 0, SEEK_SET);
+fclose(fp);
+}
+else{
+printf("Arquivo inexistente");
+}
 return tamanho;
 }
 
 void le_arq_texto(char *nome_arquivo, char *conteudo)
 {
-int size=0;
+long tam=0;
 FILE *fp = fopen(nome_arquivo, "r");
-size = tam_arq_texto(nome_arquivo);
-conteudo = malloc(size * (sizeof(char)));
-fgets(conteudo, sizeof(char)*size, fp);
+tam = tam_arq_texto(nome_arquivo);
+conteudo = (char *)malloc(tam * (sizeof(char)));
+fgets(conteudo, sizeof(char)*tam, fp);
 puts(conteudo);
 fclose(fp);
+free(conteudo);
 }
+```
+
+```
+long tam_arq_texto(char *nome_arquivo);
+void le_arq_texto(char *nome_arquivo, char *conteudo);
 ```
 
 6. Crie um código em C que copia a funcionalidade básica do comando `cat`: escrever o conteúdo de um arquivo-texto no terminal. Reaproveite as funções já criadas nas questões anteriores. Por exemplo, considerando que o código criado recebeu o nome de 'cat_falsificado':
@@ -177,8 +199,8 @@ int main (int argc, char * argv[]){
 
 char *tala;
 le_arq_texto(argv[1], tala);
-printf("\n%s\n", tala);
 }
+
 ```
 
 
@@ -188,4 +210,31 @@ printf("\n%s\n", tala);
 $ echo Ola mundo cruel! Ola universo ingrato! > ola.txt
 $ ./busca_e_conta Ola ola.txt
 $ 'Ola' ocorre 2 vezes no arquivo 'ola.txt'.
+```
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char const *argv[])
+{   
+int n=0;
+char string[30];
+FILE *fp = fopen(argv[2], "r");
+if (fp == NULL)
+{
+    printf("Não foi possível acessar o arquivo\n");
+    exit(-1);
+}
+
+while(!feof(fp))//this loop searches the for the current word
+{
+    fscanf(fp,"%s",string);
+    if(strcmp(string,argv[1]) == 0)//if match found increment num
+    n++;
+}
+printf("'%s' ocorre %d vezes no arquivo '%s'\n",argv[1],n, argv[2] );
+return 0;
+}
 ```
