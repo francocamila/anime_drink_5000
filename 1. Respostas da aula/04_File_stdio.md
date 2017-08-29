@@ -228,10 +228,10 @@ if (fp == NULL)
     exit(-1);
 }
 
-while(!feof(fp))//this loop searches the for the current word
+while(!feof(fp))//enquanto não chegar ao fim do arquivo
 {
     fscanf(fp,"%s",string);
-    if(strcmp(string,argv[1]) == 0)//if match found increment num
+    if(strcmp(string,argv[1]) == 0)//se encontra uma palavra igual no texto
     n++;
 }
 printf("'%s' ocorre %d vezes no arquivo '%s'\n",argv[1],n, argv[2] );
